@@ -223,7 +223,9 @@
 - (NSMutableArray *) data
 {
     if (_data == nil) {
-        NSArray *array = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"CityData" ofType:@"plist"]];
+        NSBundle *bundle = [NSBundle bundleForClass:[self class]];
+        NSString *path = [bundle pathForResource:@"CityData" ofType:@"plist"];
+        NSArray *array = [NSArray arrayWithContentsOfFile:path];
         _data = [[NSMutableArray alloc] init];
         for (NSDictionary *groupDic in array) {
             TLCityGroup *group = [[TLCityGroup alloc] init];
